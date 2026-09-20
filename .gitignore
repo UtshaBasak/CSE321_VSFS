@@ -1,0 +1,21 @@
+# Build output
+bin/
+build/
+*.o
+*.d
+
+# Filesystem images produced by mkfs and the test suite
+*.img
+
+# Unsuffixed binaries from an in-tree build
+/mkfs
+/validator
+/journal
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db

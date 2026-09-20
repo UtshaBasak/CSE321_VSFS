@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+*.c    text diff=cpp
+*.h    text diff=cpp
+*.md   text
+*.sh   text eol=lf
+Makefile text
+
+*.img  binary
