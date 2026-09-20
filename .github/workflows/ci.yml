@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test (${{ matrix.cc }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cc: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: make CC=${{ matrix.cc }}
+
+      - name: Run test suite
+        run: ./tests/run_tests.sh
+
+  sanitizers:
+    name: AddressSanitizer + UBSan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build with sanitizers
+        run: make debug
+
+      - name: Run test suite
+        run: ./tests/run_tests.sh

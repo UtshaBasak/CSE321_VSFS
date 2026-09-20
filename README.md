@@ -1,5 +1,9 @@
 # VSFS — A Journaling File System in C
 
+[![CI](https://github.com/UtshaBasak/CSE321_VSFS/actions/workflows/ci.yml/badge.svg)](https://github.com/UtshaBasak/CSE321_VSFS/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Language: C](https://img.shields.io/badge/C-C11-00599C.svg)](include/vsfs.h)
+
 A minimal Unix-style file system implemented from scratch on a flat disk
 image, with a write-ahead journal that makes file creation crash-atomic and a
 consistency checker that proves the result is sound.
@@ -161,6 +165,10 @@ own scratch directory and covers formatting, image geometry, the fact that
 transactions, rejection of duplicate and over-long names, and validator
 detection of a corrupt superblock and an orphaned bitmap bit.
 
+Every push and pull request runs the same suite on GitHub Actions against both
+GCC and Clang, plus a third job built with AddressSanitizer and UBSan. The
+workflow is [.github/workflows/ci.yml](.github/workflows/ci.yml).
+
 ---
 
 ## Project structure
@@ -177,6 +185,9 @@ detection of a corrupt superblock and an orphaned bitmap bit.
 │   └── run_tests.sh      end-to-end test suite
 ├── docs/
 │   └── DESIGN.md         format spec and crash-recovery analysis
+├── .github/
+│   ├── workflows/ci.yml  build and test on GCC, Clang and sanitizers
+│   └── dependabot.yml    keeps the pinned action versions current
 ├── Makefile
 └── README.md
 ```

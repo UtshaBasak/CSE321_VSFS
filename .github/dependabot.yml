@@ -1,0 +1,19 @@
+# Dependabot configuration.
+#
+# VSFS is written in plain C with no package manager, so there are no library
+# dependencies to track. The one thing that does drift is the versions of the
+# actions pinned in .github/workflows, which this keeps current.
+#
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
